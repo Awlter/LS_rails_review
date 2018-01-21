@@ -14,6 +14,8 @@ module Myflix
     config.generators do |g|
       g.orm :active_record
       g.template_engine :haml
+
+      g.test_framework :rspec, view_specs: false, helper_specs: false, routing_specs: false
     end
   end
 end
