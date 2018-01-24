@@ -6,13 +6,13 @@ describe Video do
   it { is_expected.to belong_to(:category)}
   
   it 'is valid with title, description' do
-    video = FactoryGirl.build(:video)
+    video = build(:video)
     expect(video.valid?).to be_truthy
   end
 
   describe ".search_by_title" do
-    let(:futurama) { FactoryGirl.create(:video, title: "Futurama") }
-    let(:futurama1) { FactoryGirl.create(:video, title: "Futurama1", created_at: 1.day.ago)}
+    let(:futurama) { create(:video, title: "Futurama") }
+    let(:futurama1) { create(:video, title: "Futurama1", created_at: 1.day.ago)}
     before do
       futurama
     end
