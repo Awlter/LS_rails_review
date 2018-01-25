@@ -1,7 +1,5 @@
 class VideosController < ApplicationController
-  before_action do
-    require_login
-  end
+  before_action :require_login
 
   def index
     @videos = Video.all
