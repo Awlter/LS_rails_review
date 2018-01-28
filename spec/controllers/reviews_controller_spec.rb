@@ -4,6 +4,7 @@ describe ReviewsController do
   describe "#create" do
     context "with authenticated user" do
       before { set_current_user }
+      
       it "creates a new review" do
         video = create(:video)
         post :create, review: attributes_for(:review).merge!(video_id: video.id)
