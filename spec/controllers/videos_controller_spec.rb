@@ -4,8 +4,7 @@ describe VideosController do
   describe "#index" do
     context "as authenticated user" do
       before do
-        user = create(:user)
-        session[:user_id] = user.id
+        set_current_user
         get :index
       end
 
@@ -34,8 +33,7 @@ describe VideosController do
     context "as authenticated user" do
       let(:video) { create(:video) }
       before do
-        user = create(:user)
-        session[:user_id] = user.id
+        set_current_user
         get :show, id: video.id
       end
 
