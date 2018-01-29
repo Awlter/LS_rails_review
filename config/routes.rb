@@ -16,7 +16,7 @@ Myflix::Application.routes.draw do
     resources :reviews, only: [:create]
   end
 
-  resources :my_queue, only: [:index]
+  resources :queue_items, only: [:index]
 
   get 'ui(/:action)', controller: 'ui'
 end
