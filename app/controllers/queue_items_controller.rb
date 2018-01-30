@@ -7,16 +7,34 @@ class QueueItemsController < ApplicationController
 
   def create
     video = Video.find(params[:video_id])
+    create_queue_item(video)
+
+    redirect_to video_path(video)
+  end
+
+  def destroy
+    queue_item = QueueItem.find(params[:id])
+    if queue_item.user == current_user
+      flash[:warning] = 'You have deleted one queue item.'
+      queue_item.delete
+    else
+      flash[:danger] = 'You are not allowed to do that.'
+    end
+    
+    redirect_to queue_items_path
+  end
+
+  private
+
+  def create_queue_item(video)
     queue_item = current_user.queue_items.find_by(video: video)
 
     if queue_item
       flash[:danger] = "This video has already added to the queue."
-      redirect_to video_path(video)
     else
       flash[:success] = "This video is added to the queue successfully."
       new_position = QueueItem.where(user: current_user).count + 1
       current_user.queue_items.create(video: video, position: new_position)
-      redirect_to video_path(video)
     end
   end
 end
