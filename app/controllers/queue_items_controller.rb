@@ -27,9 +27,9 @@ class QueueItemsController < ApplicationController
   private
 
   def create_queue_item(video)
-    queue_item = current_user.queue_items.find_by(video: video)
+    exsited_item = current_user.queue_items.find_by(video: video)
 
-    if queue_item
+    if exsited_item
       flash[:danger] = "This video has already added to the queue."
     else
       flash[:success] = "This video is added to the queue successfully."
