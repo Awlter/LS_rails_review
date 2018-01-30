@@ -27,6 +27,6 @@ walter_monk_review = Review.create(content: "This show is really is time killer"
 riddle_monk_review = Review.create(content: "I don't know why I wasted my whole weekend for this show..", rating: 3, video: monk, user: riddle)
 
 walter_south_park_review = Review.create(content: "The time killer is this show", rating: 4, video: south_park, user: walter)
-QueueItem.create(user: walter, video: monk, position: 1)
-QueueItem.create(user: walter, video: south_park, position: 2)
+QueueItem.create(user: walter, video: monk, position: 2)
+QueueItem.create(user: walter, video: south_park, position: 1)
 QueueItem.create(user: riddle, video: monk, position: 1)

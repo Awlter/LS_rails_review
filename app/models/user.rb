@@ -7,4 +7,8 @@ class User < ActiveRecord::Base
   has_many :queue_items
   
   has_secure_password
+
+  def queued_item?(video)
+    !!queue_items.find_by(video: video)
+  end
 end
