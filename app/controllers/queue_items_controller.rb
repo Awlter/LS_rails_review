@@ -25,12 +25,19 @@ class QueueItemsController < ApplicationController
   end
 
   def update_queue
-    params[:queue_items].each do |item_hash|
-      item = QueueItem.find(item_hash[:id])
-      item.position = item_hash[:position]
-      item.save
+    ActiveRecord::Base.transaction do
+      begin
+        params[:queue_items].each do |item_hash|
+          item = QueueItem.find(item_hash[:id])
+          item.position = item_hash[:position]
+          item.rating = item_hash[:rating]
+          item.save!
+        end
+        flash[:success] = "Updated the queue successfully."
+      rescue ActiveRecord::RecordInvalid
+        flash[:danger] = "Position number should be integer."
+      end
     end
-    flash[:success] = "Updated the queue successfully."
     redirect_to queue_items_path
   end
 
