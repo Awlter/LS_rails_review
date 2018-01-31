@@ -28,7 +28,10 @@ class QueueItemsController < ApplicationController
     params[:queue_items].each do |item_hash|
       item = QueueItem.find(item_hash[:id])
       item.position = item_hash[:position]
+      item.save
     end
+    flash[:success] = "Updated the queue successfully."
+    redirect_to queue_items_path
   end
 
   private

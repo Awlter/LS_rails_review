@@ -15,11 +15,11 @@
                 %th(width="15%") Genre
                 %th(width="15%") Remove
             %tbody
-              - @queue_items.each do |item|
+              - @queue_items.each_with_index do |item, i|
                 = hidden_field_tag "queue_items[][id]", item.id
                 %tr
                   %td
-                    = text_field_tag "queue_items[][position]", item.position, class: 'form-control'
+                    = text_field_tag "queue_items[][position]", i + 1, class: 'form-control'
                   %td
                     = link_to item.video_title, video_path(item.video)
                   %td
