@@ -2,7 +2,7 @@ class QueueItemsController < ApplicationController
   before_action :require_login
 
   def index
-    @queue_items = current_user.queue_items.includes(:video)
+    @queue_items = current_user.queue_items.includes(video: ['reviews'])
   end
 
   def create
@@ -25,7 +25,10 @@ class QueueItemsController < ApplicationController
   end
 
   def update_queue
-    binding.pry
+    params[:queue_items].each do |item_hash|
+      item = QueueItem.find(item_hash[:id])
+      item.position = item_hash[:position]
+    end
   end
 
   private
