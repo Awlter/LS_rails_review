@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8}
 
   has_many :reviews
-  has_many :queue_items
+  has_many :queue_items, -> { order(:position)}
   
   has_secure_password
 

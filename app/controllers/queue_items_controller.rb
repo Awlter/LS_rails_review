@@ -2,7 +2,7 @@ class QueueItemsController < ApplicationController
   before_action :require_login
 
   def index
-    @queue_items = QueueItem.includes(:video).order(:position).where(user: current_user)
+    @queue_items = current_user.queue_items.includes(:video)
   end
 
   def create
@@ -22,6 +22,10 @@ class QueueItemsController < ApplicationController
     end
     
     redirect_to queue_items_path
+  end
+
+  def update_queue
+    binding.pry
   end
 
   private

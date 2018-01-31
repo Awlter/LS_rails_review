@@ -9,4 +9,8 @@ class QueueItem < ActiveRecord::Base
   def video_category
     video.category.name
   end
+
+  def rating
+    video.reviews.first.rating
+  end
 end
