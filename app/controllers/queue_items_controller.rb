@@ -24,19 +24,12 @@ class QueueItemsController < ApplicationController
     redirect_to queue_items_path
   end
 
-  def update_queue
-    ActiveRecord::Base.transaction do
-      begin
-        params[:queue_items].each do |item_hash|
-          item = QueueItem.find(item_hash[:id])
-          item.position = item_hash[:position]
-          item.rating = item_hash[:rating]
-          item.save!
-        end
-        flash[:success] = "Updated the queue successfully."
-      rescue ActiveRecord::RecordInvalid
-        flash[:danger] = "Position number should be integer."
-      end
+  def update
+    begin
+      update_queue_items
+      flash[:success] = "Updated the queue successfully."
+    rescue ActiveRecord::RecordInvalid
+      flash[:danger] = "Position number should be integer."
     end
     redirect_to queue_items_path
   end
@@ -52,6 +45,17 @@ class QueueItemsController < ApplicationController
       flash[:success] = "This video is added to the queue successfully."
       new_position = QueueItem.where(user: current_user).count + 1
       current_user.queue_items.create(video: video, position: new_position)
+    end
+  end
+
+  def update_queue_items
+    ActiveRecord::Base.transaction do
+      params[:queue_items].each do |item_hash|
+        item = QueueItem.find(item_hash[:id])
+        item.position = item_hash[:position]
+        item.rating = item_hash[:rating]
+        item.save!
+      end
     end
   end
 end
