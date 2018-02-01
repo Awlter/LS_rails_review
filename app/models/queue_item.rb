@@ -16,8 +16,7 @@ class QueueItem < ActiveRecord::Base
     video.reviews.find_by(user: user).rating
   end
 
-  def update_position_and_rating(item_hash)
-    update!(position: item_hash[:position])
-    video.reviews.find_by(user: user).update!(rating: item_hash[:rating])
+  def rating=(value)
+    video.reviews.find_by(user: user).update!(rating: value)
   end
 end

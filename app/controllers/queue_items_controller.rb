@@ -51,7 +51,7 @@ class QueueItemsController < ApplicationController
   def update_queue_items
     ActiveRecord::Base.transaction do
       params[:queue_items].each do |item_hash|
-        QueueItem.find(item_hash[:id]).update_position_and_rating(item_hash)
+        QueueItem.find(item_hash[:id]).update!(rating: item_hash[:rating], position: item_hash[:position])
       end
     end
   end
