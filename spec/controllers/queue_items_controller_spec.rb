@@ -31,7 +31,5 @@ describe QueueItemsController do
         expect(QueueItem.count).to eq 1
       end
     end
-
-    context "with adding a queue item as another user"
   end
 end

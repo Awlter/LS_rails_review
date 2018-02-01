@@ -30,7 +30,8 @@ group :test do
   gem 'vcr', '2.9.3'
   gem "factory_bot_rails", "~> 4.0"
   gem 'faker'
-end
+  gem "capybara", "~> 2.2.1"
+end 
 
 group :production do
   gem 'rails_12factor'
