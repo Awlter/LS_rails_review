@@ -15,7 +15,7 @@
   .row
     .col-sm-10.col-sm-offset-1
       = bootstrap_form_for [@video, Review.new], layout: :horizontal, label_col: "col-sm-2", control_col: "col-sm-2" do |f|
-        = f.select :rating, 5.downto(1).map { |n| [pluralize(n, 'Star'), n]}, { label: "Rate this video" }
+        = f.select :rating, queue_item_rating_options, { label: "Rate this video" }
         = f.text_area :content, control_col: "col-sm-8", rows: 6, required: true
         %fieldset.col-sm-offset-2
           = f.submit "Submit"
