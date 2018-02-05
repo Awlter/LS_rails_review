@@ -8,6 +8,7 @@ Myflix::Application.routes.draw do
   get '/sign_out', to: 'sessions#destroy'
 
   resources :users, only: [:create, :show]
+  resources :relationships, only: [:create]
 
   resources :videos, only: [:index, :show] do
     collection do
