@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :require_login, only: [:show]
+  
   def new
     @user = User.new
     redirect_to home_path if logged_in?
@@ -13,6 +15,10 @@ class UsersController < ApplicationController
       flash.now[:error] = "Some thing wrong with the inputs"
       render :new
     end
+  end
+
+  def show
+    @user = User.includes({reviews: 'video'}, { queue_items: 'video'}).find(params[:id])
   end
 
   private
