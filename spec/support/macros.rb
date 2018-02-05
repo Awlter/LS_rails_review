@@ -10,3 +10,8 @@ def sign_in(user=nil)
   fill_in "Password", with: user.password
   click_button 'Sign In'
 end
+
+def click_video_on_home_page(video)
+  visit home_path
+  find("a[href='/videos/#{video.id}']").click
+end
