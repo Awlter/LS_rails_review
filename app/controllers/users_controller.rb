@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
+      MyMailer.success_registration(@user).deliver
       flash[:success] = "Congrats! You have successfully registered on myflix!"
       redirect_to sign_in_path
     else
