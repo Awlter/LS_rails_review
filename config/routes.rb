@@ -1,11 +1,13 @@
 Myflix::Application.routes.draw do
   root 'page#front'
+  get '/expired_token', to: 'page#expired_token'
   get '/home', to: 'categories#index'
 
   get '/register', to: 'users#new'
   get '/sign_in', to: 'sessions#new'
   post '/sign_in', to: 'sessions#create'
   get '/sign_out', to: 'sessions#destroy'
+  
 
   resources :users, only: [:create, :show]
 
@@ -21,6 +23,11 @@ Myflix::Application.routes.draw do
 
   resources :queue_items, only: [:index, :create, :destroy]
   post '/update_queue', to: "queue_items#update"
+
+  resources :forget_passwords, only: [:create]
+  get '/forget_password', to: 'forget_passwords#new'
+
+  resources :password_resets, only: [:show, :create]
 
   get 'ui(/:action)', controller: 'ui'
 end

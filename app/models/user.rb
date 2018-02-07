@@ -24,6 +24,10 @@ class User < ActiveRecord::Base
     self.token = SecureRandom.urlsafe_base64
   end
 
+  def add_reset_token
+    update_column('reset_token', SecureRandom.urlsafe_base64)
+  end
+
   def to_param
     token
   end
