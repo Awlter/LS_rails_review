@@ -6,13 +6,14 @@ class RelationshipsController < ApplicationController
   end
 
   def create
-    relationship = Relationship.new(leader_id: params[:leader_id], follower_id: current_user.id)
+    leader = User.find(params[:leader_id])
+    relationship = Relationship.new(leader: leader, follower: current_user)
     if relationship.save
       flash[:success] = "Followed this user successfully!"
     else
       flash[:danger] = "You cann't follow the same person twice."
     end
-    redirect_to user_path(params[:leader_id])
+    redirect_to leader
   end
 
   def destroy

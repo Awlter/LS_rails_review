@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.includes({reviews: 'video'}, { queue_items: 'video'}).find(params[:id])
+    @user = User.includes({reviews: 'video'}, { queue_items: 'video'}).find_by_token(params[:id])
   end
 
   private
