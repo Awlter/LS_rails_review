@@ -6,9 +6,14 @@ def sign_in(user=nil)
   user = user || create(:user)
   visit root_path
   click_link "Sign In"
-  fill_in "Email Address", with: user.email
-  fill_in "Password", with: user.password
+  fill_in "Email Address", with: user[:email]
+  fill_in "Password", with: user[:password] || user.password
   click_button 'Sign In'
+end
+
+def sign_out
+  visit root_path
+  click_link "Sign Out"
 end
 
 def click_video_on_home_page(video)

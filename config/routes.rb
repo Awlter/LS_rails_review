@@ -10,6 +10,8 @@ Myflix::Application.routes.draw do
   
 
   resources :users, only: [:create, :show]
+  resources :invitations, only: [:new, :create]
+  get '/register/:token', to: "users#new_with_token", as: '/register_with_token'
 
   get '/people', to: 'relationships#index'
   resources :relationships, only: [:create, :destroy]

@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
 
   has_many :follower_relationships, class_name: "Relationship", foreign_key: "leader_id"
   has_many :followers, through: :follower_relationships
+
+  has_many :invitations
   
   has_secure_password
 
@@ -26,6 +28,10 @@ class User < ActiveRecord::Base
 
   def add_reset_token
     update_column('reset_token', SecureRandom.urlsafe_base64)
+  end
+
+  def follow(another_user_id)
+    following_relationships.create(leader_id: another_user_id)
   end
 
   def to_param
