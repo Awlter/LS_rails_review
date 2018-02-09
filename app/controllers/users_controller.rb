@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   end
 
   def handle_invitation(user)
-    if user.invitation_token
+    if user.invitation_token.present?
       invitation = Invitation.find_by_token(user.invitation_token)
       inviter = invitation.inviter
       inviter.follow(user.id)
