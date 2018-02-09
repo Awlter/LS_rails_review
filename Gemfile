@@ -11,6 +11,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'bcrypt'
 gem "bootstrap_form", "~> 2.7"
+gem "sidekiq", "4.2"
 
 group :development do
   gem 'thin'

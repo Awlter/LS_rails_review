@@ -17,7 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       handle_invitation(@user)
-      MyMailer.success_registration(@user).deliver
+      MyMailer.delay.success_registration(@user)
       flash[:success] = "Congrats! You have successfully registered on myflix!"
       redirect_to sign_in_path
     else

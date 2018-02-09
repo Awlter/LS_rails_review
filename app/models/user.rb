@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
-  before_create :generate_token
-
+  include Tokenable
+  
   validates_presence_of :email, :full_name, :password
   validates_uniqueness_of :email
   validates :password, length: { minimum: 8}
@@ -20,10 +20,6 @@ class User < ActiveRecord::Base
 
   def queued_item?(video)
     !!queue_items.find_by(video: video)
-  end
-
-  def generate_token
-    self.token = SecureRandom.urlsafe_base64
   end
 
   def add_reset_token
