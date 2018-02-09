@@ -1,0 +1,12 @@
+%section.sign_in.container
+  .row
+    .col-sm-10.col-sm-offset-1
+      = bootstrap_form_tag url: 'sign_in', layout: :horizontal, label_col: 'col-sm-2', control_col: 'col-sm-6' do |f|
+        %header
+          %h1 Sign in
+        %fieldset
+          = f.email_field :email, label: 'Email Address', required: true
+          = f.password_field :password, required: true
+        %fieldset.col-sm-offset-2
+          = f.submit "Sign In"
+          = link_to "Forget Password?", forget_password_path

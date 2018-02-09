@@ -9,11 +9,15 @@ gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'pg'
+gem 'bcrypt'
+gem "bootstrap_form", "~> 2.7"
+gem "sidekiq", "4.2"
 
 group :development do
   gem 'thin'
   gem "better_errors"
   gem "binding_of_caller"
+  gem 'letter_opener'
 end
 
 group :development, :test do
@@ -26,7 +30,12 @@ group :test do
   gem 'database_cleaner', '1.4.1'
   gem 'shoulda-matchers', '2.7.0'
   gem 'vcr', '2.9.3'
-end
+  gem "factory_bot_rails", "~> 4.0"
+  gem 'faker'
+  gem "capybara", "~> 2.2.1"
+  gem "capybara-email"
+  gem 'launchy'
+end 
 
 group :production do
   gem 'rails_12factor'

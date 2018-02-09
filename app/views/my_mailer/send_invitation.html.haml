@@ -1,0 +1,5 @@
+!!! 5
+%html(lang="en-US")
+  %body
+    %p Hi, #{@invitation.recipient_name}. Your friend #{@invitation.inviter.full_name} has invited you to join Myflix
+    = link_to "Join Myflix", register_with_token_url(@invitation.token)
